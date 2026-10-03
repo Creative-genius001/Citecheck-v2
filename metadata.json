@@ -1,0 +1,8 @@
+{
+  "name": "CiteCheck",
+  "description": "Paste an article to get an estimated AI citation score, every lost point explained, platform fit for X, Paragraph, Medium, Substack and ChatGPT, and a verified rewrite.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+/* Design tokens (light). Dark values follow the device setting below.
+   "static" emits every token, including ones only referenced from inline styles. */
+@theme static {
+  --font-sans: "Geist Variable", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", "Geist Mono", ui-monospace, monospace;
+
+  /* Surfaces */
+  --color-page: #F3F3F5;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #FAFAFB;
+  --color-surface-3: #F7F7F9;
+  --color-track: #F3F3F5;
+  --color-skeleton: #EEEEF2;
+  --color-ring-track: #EDEDF1;
+
+  /* Lines */
+  --color-line: #E4E4EA;
+  --color-line-soft: #ECECF0;
+  --color-divider: #EEEEF2;
+  --color-line-strong: #D4D4DC;
+
+  /* Text */
+  --color-ink: #121216;
+  --color-ink-2: #34343C;
+  --color-muted: #55555F;
+  --color-subtle: #6B6B78;
+  --color-on-ink: #FFFFFF;
+
+  /* Actions */
+  --color-primary-hover: #2A2A31;
+  --color-disabled: #E4E4EA;
+
+  /* Interactive accent */
+  --color-accent: #5B3FE0;
+  --color-accent-strong: #3F27B8;
+  --color-accent-soft: #EEEBFD;
+
+  /* Lost points */
+  --color-lost: #9A3412;
+  --color-lost-soft: #FFEDE0;
+
+  /* Errors */
+  --color-error: #991B1B;
+  --color-error-soft: #FDE7E7;
+  --color-error-line: #F6CACA;
+
+  /* Score bands: pill background and text (ring gradients are in src/ui/band.ts) */
+  --color-band-high-soft: #E3F6EA;
+  --color-band-high-text: #166534;
+  --color-band-strong-soft: #EEEBFD;
+  --color-band-strong-text: #4C2FC7;
+  --color-band-work-soft: #FFEDE0;
+  --color-band-work-text: #9A3412;
+  --color-band-low-soft: #FDE7E7;
+  --color-band-low-text: #991B1B;
+
+  /* Radii */
+  --radius-card: 28px;
+  --radius-strip: 24px;
+  --radius-field: 20px;
+  --radius-box: 18px;
+  --radius-button: 16px;
+  --radius-control: 14px;
+  --radius-input: 12px;
+  --radius-tile: 13px;
+  --radius-logo: 11px;
+  --radius-small: 9px;
+  --radius-line: 8px;
+  --radius-tag: 6px;
+  --radius-mark: 5px;
+
+  /* Shadows */
+  --shadow-score: 0 1px 2px rgb(18 18 22 / 0.03), 0 12px 32px rgb(18 18 22 / 0.05);
+  --shadow-selected: 0 1px 3px rgb(18 18 22 / 0.10);
+  --shadow-segment: 0 1px 2px rgb(18 18 22 / 0.08);
+
+  --animate-pulse-soft: pulse-soft 1.2s ease-in-out infinite;
+  --animate-spin-fast: spin 0.8s linear infinite;
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+}
+
+/* Dark theme: same roles, derived from the light palette. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #0E0E11;
+    --color-surface: #17171B;
+    --color-surface-2: #1C1C21;
+    --color-surface-3: #1F1F25;
+    --color-track: #232329;
+    --color-skeleton: #26262D;
+    --color-ring-track: #26262D;
+
+    --color-line: #2C2C34;
+    --color-line-soft: #2A2A31;
+    --color-divider: #26262D;
+    --color-line-strong: #3A3A44;
+
+    --color-ink: #F2F2F5;
+    --color-ink-2: #D4D4DC;
+    --color-muted: #A1A1AD;
+    --color-subtle: #8A8A96;
+    --color-on-ink: #121216;
+
+    --color-primary-hover: #D9D9E0;
+    --color-disabled: #2C2C34;
+
+    --color-accent: #9B87FF;
+    --color-accent-strong: #C4B8FF;
+    --color-accent-soft: #2A2350;
+
+    --color-lost: #FFA06B;
+    --color-lost-soft: #3A2214;
+
+    --color-error: #FF8F8F;
+    --color-error-soft: #3A1A1A;
+    --color-error-line: #5C2626;
+
+    --color-band-high-soft: #12301F;
+    --color-band-high-text: #7EE2A6;
+    --color-band-strong-soft: #2A2350;
+    --color-band-strong-text: #C4B8FF;
+    --color-band-work-soft: #3A2214;
+    --color-band-work-text: #FFB27A;
+    --color-band-low-soft: #3A1A1A;
+    --color-band-low-text: #FF9C9C;
+
+    --shadow-score: 0 1px 2px rgb(0 0 0 / 0.30), 0 12px 32px rgb(0 0 0 / 0.35);
+    --shadow-selected: 0 1px 3px rgb(0 0 0 / 0.45);
+    --shadow-segment: 0 1px 2px rgb(0 0 0 / 0.40);
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    --ring-highlight: rgb(255 255 255 / 0.45);
+    --ring-disc-shadow: inset 0 2px 6px rgb(18 18 22 / 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ring-highlight: rgb(255 255 255 / 0.14);
+      --ring-disc-shadow: inset 0 2px 6px rgb(0 0 0 / 0.35);
+    }
+  }
+
+  html {
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-page);
+  }
+  ::placeholder {
+    color: var(--color-subtle);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  select:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-accent-strong);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Section label: card headings (h2) and sub-labels (h3). */
+  .label {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .label-s {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Rendered Markdown in the rewrite view. */
+  .prose-rewrite {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+  }
+  .prose-rewrite > :first-child { margin-top: 0; }
+  .prose-rewrite .md-h1 { font-size: 28px; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 16px; }
+  .prose-rewrite .md-h2 { font-size: 21px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 10px; }
+  .prose-rewrite .md-h3 { font-size: 18px; line-height: 1.35; font-weight: 600; margin: 22px 0 8px; }
+  .prose-rewrite p { margin: 0 0 14px; }
+  .prose-rewrite ul, .prose-rewrite ol { margin: 0 0 14px; padding-left: 22px; }
+  .prose-rewrite ul { list-style: disc; }
+  .prose-rewrite ol { list-style: decimal; }
+  .prose-rewrite li { margin: 4px 0; }
+  .prose-rewrite strong { font-weight: 600; }
+  .prose-rewrite a { color: var(--color-accent); text-decoration: underline; }
+  .prose-rewrite blockquote { margin: 0 0 14px; padding: 2px 0 2px 14px; border-left: 3px solid var(--color-line); color: var(--color-ink-2); }
+  .prose-rewrite code { font-family: var(--font-mono); font-size: 0.88em; background: var(--color-track); border-radius: 6px; padding: 1px 5px; }
+  .prose-rewrite pre { background: var(--color-surface-2); border: 1px solid var(--color-divider); border-radius: 14px; padding: 12px 14px; overflow-x: auto; margin: 0 0 14px; }
+  .prose-rewrite pre code { background: none; padding: 0; }
+  .prose-rewrite hr { border: 0; border-top: 1px solid var(--color-divider); margin: 22px 0; }
+  .prose-rewrite table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 0 0 14px; font-size: 14px; }
+  .prose-rewrite th, .prose-rewrite td { border: 1px solid var(--color-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .prose-rewrite th { background: var(--color-surface-3); font-weight: 600; }
+}
